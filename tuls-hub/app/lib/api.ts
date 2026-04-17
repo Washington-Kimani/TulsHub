@@ -1,4 +1,4 @@
-export const API_BASE = "http://localhost:5000/api/v1/tools";
+export const API_BASE = process.env.NEXT_PUBLIC_FLASK_URL || "http://localhost:5000/api/v1/tools";
 
 interface DataType {
     image?: string
