@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import "tailwindcss";
+
+/* Define custom color variants per theme */
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.55 0.2 260);
+  --secondary: oklch(0.75 0.1 200);
+  --accent: oklch(0.8 0.15 80);
+  --muted: oklch(0.95 0 0);
+  --border: oklch(0.9 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.7 0.2 260);
+  --secondary: oklch(0.4 0.1 200);
+  --accent: oklch(0.6 0.15 80);
+  --muted: oklch(0.2 0 0);
+  --border: oklch(0.3 0 0);
+}
+
+/* Custom named themes */
+[data-theme="ocean"] {
+  --background: oklch(0.15 0.04 230);
+  --foreground: oklch(0.95 0.01 200);
+  --primary: oklch(0.6 0.18 210);
+  --accent: oklch(0.75 0.12 170);
+}
+
+[data-theme="forest"] {
+  --background: oklch(0.15 0.04 140);
+  --foreground: oklch(0.95 0.01 120);
+  --primary: oklch(0.55 0.18 145);
+  --accent: oklch(0.7 0.14 90);
+}
+
+/* Map to Tailwind utility classes */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  background: #fbfbfe;
+  color: #040316;
+  font-family: "Josefin Sans", sans-serif;
+}
