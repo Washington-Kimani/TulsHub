@@ -5,20 +5,22 @@ import os
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
-    CORS(app, resources={r"/api/v1/*": {"origins": ["http://localhost:3000", "http://localhost:3001", os.getenv("FRONTEND_URL")]}})
-    app.register_blueprint(tools)
 
-    @app.before_request
-    def check_for_options():
-        if request.method == "OPTIONS":
-            return "", 200
-        return None
-    
+    origins = [
+        "http://localhost:3000",
+        "http://localhost:3001",
+    ]
+
+    frontend_url = os.getenv("FRONTEND_URL")
+    if frontend_url:
+        origins.append(frontend_url)
+
+    CORS(app, resources={r"/api/v1/*": {"origins": origins}})
+
+    app.register_blueprint(tools, url_prefix="/api/v1")
+
     @app.route("/")
     def index():
         return "Welcome to the TULS Hub API!"
-    
-    if __name__ == "__main__":
-        app.run(debug=True, use_reloader=True)
 
     return app
